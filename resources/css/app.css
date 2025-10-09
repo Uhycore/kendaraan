@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* --- Perapihan DataTables x Tailwind --- */
+.dataTables_wrapper .dataTables_length label {
+  display: flex;               /* teks & select sejajar */
+  align-items: center;
+  gap: .5rem;
+}
+
+.dataTables_wrapper .dataTables_length select {
+  min-width: 5.5rem;           /* biar gak kependekan (tampil 10/25/50/100) */
+  padding-right: 1.75rem;      /* ruang untuk arrow native */
+  border-radius: .375rem;      /* rounded-md */
+  border: 1px solid #d1d5db;   /* border-gray-300 */
+  font-size: .875rem;          /* text-sm */
+  line-height: 1.25rem;
+  background-color: #fff;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  border-radius: .375rem;
+  border: 1px solid #d1d5db;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  padding: .375rem .5rem;
+}
+/* --- Fix jarak atas DataTables v2 --- */
+.dt-container .dt-layout-row {
+  margin-top: 0 !important;     /* hapus gap atas */
+}
+
+/* opsional: atur jarak vertikal antar baris layout */
+.dt-container .dt-layout-row:not(:last-child) {
+  margin-bottom: .5rem;         /* atau 0 kalau mau super rapat */
+}
