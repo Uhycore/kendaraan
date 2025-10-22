@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarsController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\UserDashboardController;
 
 Route::get('/', function () {
@@ -32,6 +34,18 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/', [CarsController::class, 'store'])->name('cars.store');
         Route::post('/{car}', [CarsController::class, 'update'])->name('cars.update');
         Route::delete('/{car}', [CarsController::class, 'destroy'])->name('cars.destroy');
+    });
+
+    Route::prefix('peminjaman')->group(function () {
+        Route::get('/', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+        // Route::post('/', [CarsController::class, 'storePem'])->name('peminjaman.store');
+        // Route::post('/{car}', [CarsController::class, 'updatePem'])->name('peminjaman.update');
+        // Route::delete('/{car}', [CarsController::class, 'destroyPem'])->name('peminjaman.destroy');
+    });
+
+    Route::prefix('users')->group(function () {
+        // User management routes can be added here
+        Example: Route::get('/', [UserController::class, 'index'])->name('users.index');
     });
 });
 

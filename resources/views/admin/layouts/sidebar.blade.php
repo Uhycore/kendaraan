@@ -8,7 +8,7 @@
     </div>
 
     {{-- Nav --}}
-    <nav class="flex-1 overflow-y-auto py-5">
+    <nav class="flex-1 overflow-y-auto py-3">
         {{-- text-base → md:text-lg biar naik ukuran di layar sedang ke atas --}}
         <ul class="space-y-1 px-4 text-base md:text-base">
             <li>
@@ -27,14 +27,28 @@
             </li>
 
             <li>
+                <a href="{{ route('users.index') }}"
+                    class="flex items-center gap-3 px-4 py-3 rounded-lg
+                   {{ request()->routeIs('users.index') ? 'bg-gray-100 text-gray-900 font-semibold' : 'text-gray-700 hover:bg-gray-50' }}">
+                    <i class="fa-solid fa-users fa-lg md:fa-xl"></i>
+                    <span class="truncate">Pengguna</span>
+                </a>
+            </li>
+            
+            <li>
                 <a href="{{ route('cars.index') }}"
                     class="flex items-center gap-3 px-4 py-3 rounded-lg
                    {{ request()->routeIs('cars.index') ? 'bg-gray-100 text-gray-900 font-semibold' : 'text-gray-700 hover:bg-gray-50' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" viewBox="0 0 24 24"
-                        fill="currentColor">
-                        <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h10v2H4v-2z" />
-                    </svg>
+                    <i class="fa-solid fa-car fa-lg md:fa-xl"></i>
                     <span class="truncate">Kendaraan</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('peminjaman.index') }}"
+                    class="flex items-center gap-3 px-4 py-3 rounded-lg
+                   {{ request()->routeIs('peminjaman.index') ? 'bg-gray-100 text-gray-900 font-semibold' : 'text-gray-700 hover:bg-gray-50' }}">
+                    <i class="fa-solid fa-file-invoice fa-lg md:fa-xl"></i>
+                    <span class="truncate">Peminjaman</span>
                 </a>
             </li>
         </ul>

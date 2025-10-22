@@ -12,6 +12,9 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
+
+
 
 
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/pages/table.js'])
@@ -73,6 +76,7 @@
                                             <th class="px-3 py-2 text-left">ID</th>
                                             <th class="px-3 py-2 text-left">Merek</th>
                                             <th class="px-3 py-2 text-left">Model</th>
+                                            <th class="px-3 py-2 text-left">Tipe</th>
                                             <th class="px-3 py-2 text-left">Tahun</th>
                                             <th class="px-3 py-2 text-left">Plat Nomor</th>
                                             <th class="px-3 py-2 text-left">Status</th>
@@ -85,6 +89,7 @@
                                                 <td class="px-3 py-2 text-gray-500">{{ $car->id }}</td>
                                                 <td class="px-3 py-2 font-medium text-gray-900">{{ $car->brand }}</td>
                                                 <td class="px-3 py-2 text-gray-700">{{ $car->model }}</td>
+                                                <td class="px-3 py-2 text-gray-700">{{ $car->vehicle_type }}</td>
                                                 <td class="px-3 py-2">{{ $car->year }}</td>
                                                 <td class="px-3 py-2">{{ $car->plate_number }}</td>
                                                 <td class="px-3 py-2">
@@ -134,8 +139,7 @@
                                             <tr>
                                                 <td colspan="11" class="px-3 py-8 text-center text-gray-500">Belum ada
                                                     data.</td>
-                                            </tr>
-                                        @endforelse
+                                            </tr> @endforelse
                                     </tbody>
                                 </table>
                                 @include('admin.cars.modal', ['cars' => $cars])

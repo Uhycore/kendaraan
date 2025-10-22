@@ -169,6 +169,54 @@
                     <button class="reserve-btn">Pesan <i class="bi bi-arrow-right-short"></i></button>
                 </div>
             </div>
+            <div class="car-card p-3">
+                <img src="https://img.freepik.com/free-photo/red-sports-car-road_114579-5075.jpg" alt="Car"
+                    class="car-image">
+                <div class="d-flex justify-content-between mt-2">
+                    <h6 class="fw-bold mb-0">McLaren 720S</h6>
+                    <button class="btn btn-light btn-sm"><i class="bi bi-heart"></i></button>
+                </div>
+                <p class="text-muted mb-1">Hardtop Sport Car</p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="price-tag mb-0">¥8372 <span class="text-muted">/hari</span></p>
+                        <p class="text-muted small mb-0">¥832 / jam</p>
+                    </div>
+                    <div>
+                        <span class="badge badge-info me-2"><i class="bi bi-speedometer2"></i> 240HP</span>
+                        <span class="badge badge-info"><i class="bi bi-gear-fill"></i> V12</span>
+                    </div>
+                </div>
+
+                <div class="mt-3 text-end">
+                    <button class="reserve-btn">Pesan <i class="bi bi-arrow-right-short"></i></button>
+                </div>
+            </div>
+            <div class="car-card p-3">
+                <img src="https://img.freepik.com/free-photo/red-sports-car-road_114579-5075.jpg" alt="Car"
+                    class="car-image">
+                <div class="d-flex justify-content-between mt-2">
+                    <h6 class="fw-bold mb-0">McLaren 720S</h6>
+                    <button class="btn btn-light btn-sm"><i class="bi bi-heart"></i></button>
+                </div>
+                <p class="text-muted mb-1">Hardtop Sport Car</p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="price-tag mb-0">¥8372 <span class="text-muted">/hari</span></p>
+                        <p class="text-muted small mb-0">¥832 / jam</p>
+                    </div>
+                    <div>
+                        <span class="badge badge-info me-2"><i class="bi bi-speedometer2"></i> 240HP</span>
+                        <span class="badge badge-info"><i class="bi bi-gear-fill"></i> V12</span>
+                    </div>
+                </div>
+
+                <div class="mt-3 text-end">
+                    <button class="reserve-btn">Pesan <i class="bi bi-arrow-right-short"></i></button>
+                </div>
+            </div>
         </div>
 
         {{-- Bottom Navigation --}}

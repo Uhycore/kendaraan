@@ -88,6 +88,19 @@
                                 <input type="text" name="color" class="form-control"
                                     value="{{ old('color', $car->color) }}">
                             </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Type</label>
+                                <input type="text" name="type" class="form-control"
+                                    value="{{ old('type', $car->type) }}" placeholder="Motor / Mobil / Bus">
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Gambar (opsional)</label>
+                                <input type="file" name="image" class="form-control" accept="image/*">
+                                @if ($car->image_path)
+                                    <small class="text-muted d-block mt-1">Saat ini: <a target="_blank"
+                                            href="{{ asset('storage/' . $car->image_path) }}">lihat gambar</a></small>
+                                @endif
+                            </div>
                             <div class="col-sm-4">
                                 <label class="form-label">Price</label>
                                 <input type="number" name="price" class="form-control"
