@@ -44,9 +44,9 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('peminjaman.index') }}"
+                <a href="{{ route('trips.index') }}"
                     class="flex items-center gap-3 px-4 py-3 rounded-lg
-                   {{ request()->routeIs('peminjaman.index') ? 'bg-gray-100 text-gray-900 font-semibold' : 'text-gray-700 hover:bg-gray-50' }}">
+                   {{ request()->routeIs('trips.index') ? 'bg-gray-100 text-gray-900 font-semibold' : 'text-gray-700 hover:bg-gray-50' }}">
                     <i class="fa-solid fa-file-invoice fa-lg md:fa-xl"></i>
                     <span class="truncate">Peminjaman</span>
                 </a>

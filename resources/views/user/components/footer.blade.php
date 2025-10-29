@@ -5,7 +5,7 @@
             <small>Beranda</small>
         </a>
 
-        <a href="#" class="text-center text-decoration-none text-dark mb-2">
+        <a href="{{ route('user.history') }}" class="text-center text-decoration-none text-dark mb-2">
             <i class="bi bi-clock-history fs-1"></i><br>
             <small>History</small>
         </a>

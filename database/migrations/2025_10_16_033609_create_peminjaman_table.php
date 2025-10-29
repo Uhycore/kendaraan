@@ -9,22 +9,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('trips', function (Blueprint $table) {
-            $table->id(); // Primary key
-            
+            $table->id();
+            $table->string('name');
+            $table->string('travel_destination');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->enum('status', ['terjadwal', 'berangkat', 'kembali', 'batal'])->default('terjadwal');
+            $table->text('notes')->nullable();
 
-            $table->string('nama');              // Nama pemohon/pengemudi
-            $table->string('tujuan');            // Tujuan perjalanan
-            $table->string('nopol', 20);         // Nomor polisi kendaraan
-            $table->date('tanggal');             // Tanggal perjalanan
-
-            // Kolom status (cuma dua pilihan)
-            $table->enum('status', ['berangkat', 'kembali'])->default('berangkat');
-
-            // Relasi ke tabel users dan cars
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('car_id')->constrained('cars')->onDelete('cascade');
 
-            $table->timestamps(); // created_at & updated_at
+            $table->timestamps();
         });
     }
 

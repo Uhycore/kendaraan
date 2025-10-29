@@ -5,8 +5,12 @@
             <h1 class="h4 text-white mb-0">Halo, {{ Auth::user()->name }}</h1>
         </div>
         {{-- Tombol Logout --}}
-        <a href="{{ route('logout') }}" class="text-white fs-5">
-            <i class="bi bi-box-arrow-right fs-1"></i>
-        </a>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn btn-danger w-100 text-start">
+                <i class="bi bi-box-arrow-right"></i> Keluar
+            </button>
+        </form>
+
     </div>
 </nav>

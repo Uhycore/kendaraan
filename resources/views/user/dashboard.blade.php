@@ -109,16 +109,19 @@
         }
     </style>
 
+<body>
+
     <div class="container-fluid p-0">
+
         {{-- Navbar kuning --}}
         @include('user.components.navbar')
 
-        {{-- Pilihan tanggal & kategori --}}
+        {{-- Pilihan kategori --}}
         <div class="bg-warning py-3 px-2 d-flex justify-content-around align-items-center" style="overflow-x:auto;">
             {{-- Motor --}}
             <button
                 class="btn btn-light rounded-circle text-dark fw-semibold d-flex flex-column align-items-center justify-content-center menu-item active"
-                style="width: 65px; height: 65px;">
+                data-type="motor" aria-pressed="true" style="width: 65px; height: 65px;">
                 <i class="bi bi-bicycle fs-4"></i>
                 <small>Motor</small>
             </button>
@@ -126,7 +129,7 @@
             {{-- Mobil --}}
             <button
                 class="btn btn-light rounded-circle text-dark fw-semibold d-flex flex-column align-items-center justify-content-center menu-item"
-                style="width: 65px; height: 65px;">
+                data-type="mobil" aria-pressed="false" style="width: 65px; height: 65px;">
                 <i class="bi bi-car-front-fill fs-4"></i>
                 <small>Mobil</small>
             </button>
@@ -134,94 +137,173 @@
             {{-- Bus --}}
             <button
                 class="btn btn-light rounded-circle text-dark fw-semibold d-flex flex-column align-items-center justify-content-center menu-item"
-                style="width: 65px; height: 65px;">
+                data-type="bus" aria-pressed="false" style="width: 65px; height: 65px;">
                 <i class="bi bi-bus-front fs-4"></i>
                 <small>Bus</small>
             </button>
         </div>
 
 
-
-
-        {{-- List mobil --}}
+        {{-- List mobil (dinamis, tanpa status & tombol selalu aktif) --}}
         <div class="container mt-3 mb-5 pb-5">
-            <div class="car-card p-3">
-                <img src="https://img.freepik.com/free-photo/red-sports-car-road_114579-5075.jpg" alt="Car"
-                    class="car-image">
-                <div class="d-flex justify-content-between mt-2">
-                    <h6 class="fw-bold mb-0">McLaren 720S</h6>
-                    <button class="btn btn-light btn-sm"><i class="bi bi-heart"></i></button>
-                </div>
-                <p class="text-muted mb-1">Hardtop Sport Car</p>
+            @forelse ($cars as $car)
+                @php
+                    $imgUrl = $car['image']
+                        ? asset('storage/cars/' . $car['image'])
+                        : 'https://placehold.co/800x450?text=Foto+Belum+Tersedia';
 
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <p class="price-tag mb-0">¥8372 <span class="text-muted">/hari</span></p>
-                        <p class="text-muted small mb-0">¥832 / jam</p>
-                    </div>
-                    <div>
-                        <span class="badge badge-info me-2"><i class="bi bi-speedometer2"></i> 240HP</span>
-                        <span class="badge badge-info"><i class="bi bi-gear-fill"></i> V12</span>
-                    </div>
-                </div>
+                    $priceDaily = number_format((float) $car['price'], 0, ',', '.');
 
-                <div class="mt-3 text-end">
-                    <button class="reserve-btn">Pesan <i class="bi bi-arrow-right-short"></i></button>
-                </div>
-            </div>
-            <div class="car-card p-3">
-                <img src="https://img.freepik.com/free-photo/red-sports-car-road_114579-5075.jpg" alt="Car"
-                    class="car-image">
-                <div class="d-flex justify-content-between mt-2">
-                    <h6 class="fw-bold mb-0">McLaren 720S</h6>
-                    <button class="btn btn-light btn-sm"><i class="bi bi-heart"></i></button>
-                </div>
-                <p class="text-muted mb-1">Hardtop Sport Car</p>
+                    // data-type untuk filter tab
+                    $type = strtolower($car['vehicle_type'] ?? '');
+                    $subtitle =
+                        trim(
+                            ($car['vehicle_type'] ? ucfirst($car['vehicle_type']) : '') . ' • ' . ($car['year'] ?? ''),
+                        ) ?:
+                        '—';
+                @endphp
 
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <p class="price-tag mb-0">¥8372 <span class="text-muted">/hari</span></p>
-                        <p class="text-muted small mb-0">¥832 / jam</p>
+                <div class="car-card p-3" data-type="{{ $type }}">
+                    <div class="position-relative">
+                        <img src="{{ $imgUrl }}" alt="Foto {{ $car['brand'] }} {{ $car['model'] }}"
+                            class="car-image" loading="lazy">
+                        {{-- STATUS DIHILANGKAN: tidak ada badge di sudut gambar --}}
                     </div>
-                    <div>
-                        <span class="badge badge-info me-2"><i class="bi bi-speedometer2"></i> 240HP</span>
-                        <span class="badge badge-info"><i class="bi bi-gear-fill"></i> V12</span>
-                    </div>
-                </div>
 
-                <div class="mt-3 text-end">
-                    <button class="reserve-btn">Pesan <i class="bi bi-arrow-right-short"></i></button>
-                </div>
-            </div>
-            <div class="car-card p-3">
-                <img src="https://img.freepik.com/free-photo/red-sports-car-road_114579-5075.jpg" alt="Car"
-                    class="car-image">
-                <div class="d-flex justify-content-between mt-2">
-                    <h6 class="fw-bold mb-0">McLaren 720S</h6>
-                    <button class="btn btn-light btn-sm"><i class="bi bi-heart"></i></button>
-                </div>
-                <p class="text-muted mb-1">Hardtop Sport Car</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <p class="price-tag mb-0">¥8372 <span class="text-muted">/hari</span></p>
-                        <p class="text-muted small mb-0">¥832 / jam</p>
+                    <div class="d-flex justify-content-between align-items-start mt-2">
+                        <div>
+                            <h5 class="fw-semibold mb-1">{{ $car['brand'] }} {{ $car['model'] }}</h5>
+                            <div class="text-muted">
+                                <i class="bi bi-tags"></i>
+                                Rp {{ $priceDaily }} <span class="text-secondary">/ unit</span>
+                            </div>
+                        </div>
+                        {{-- tombol love dihapus --}}
                     </div>
-                    <div>
-                        <span class="badge badge-info me-2"><i class="bi bi-speedometer2"></i> 240HP</span>
-                        <span class="badge badge-info"><i class="bi bi-gear-fill"></i> V12</span>
+
+                    <div class="text-muted small mt-1">{{ $subtitle }}</div>
+
+                    <div class="d-flex flex-wrap gap-2 mt-2">
+                        <span class="badge badge-info">
+                            <i class="bi bi-gear-fill me-1"></i>{{ ucfirst($car['transmission']) }}
+                        </span>
+                        <span class="badge badge-info">
+                            <i class="bi bi-fuel-pump-diesel-fill me-1"></i>{{ ucfirst($car['fuel_type']) }}
+                        </span>
+                        @if (!empty($car['plate_number']))
+                            <span class="badge badge-info">
+                                <i class="bi bi-hash me-1"></i>{{ $car['plate_number'] }}
+                            </span>
+                        @endif
+                        @if (!empty($car['color']))
+                            <span class="badge badge-info">
+                                <i class="bi bi-palette me-1"></i>{{ ucfirst($car['color']) }}
+                            </span>
+                        @endif
+                    </div>
+
+                    @if (!empty($car['description']))
+                        <p class="mt-2 mb-0 text-body">{{ $car['description'] }}</p>
+                    @endif
+
+                    <div class="mt-3 d-flex justify-content-end">
+                        <button class="reserve-btn" title="Pesan kendaraan ini" data-bs-toggle="modal"
+                            data-bs-target="#tripCreate{{ $car['id'] }}">
+                            Pesan <i class="bi
+                            bi-arrow-right-short"></i>
+                        </button>
                     </div>
                 </div>
-
-                <div class="mt-3 text-end">
-                    <button class="reserve-btn">Pesan <i class="bi bi-arrow-right-short"></i></button>
-                </div>
-            </div>
+                @include('user.trips.modal', ['car' => $car])
+            @empty
+                <div class="alert alert-warning">Belum ada data kendaraan.</div>
+            @endforelse
         </div>
+
 
         {{-- Bottom Navigation --}}
         @include('user.components.footer')
-    </div>
+
+
+</body>
+<script>
+    (function() {
+        const buttons = document.querySelectorAll('.menu-item');
+        const cards = document.querySelectorAll('.car-card');
+
+        function setActive(btn) {
+            buttons.forEach(b => {
+                b.classList.toggle('active', b === btn);
+                b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+            });
+        }
+
+        function filter(type) {
+            const t = (type || '').toLowerCase();
+            cards.forEach(card => {
+                const ctype = (card.dataset.type || '').toLowerCase();
+                card.style.display = (ctype === t) ? '' : 'none';
+            });
+        }
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setActive(btn);
+                filter(btn.dataset.type || '');
+            });
+        });
+
+        // set default filter sesuai tombol yang sudah active di markup (motor)
+        const activeBtn = document.querySelector('.menu-item.active');
+        if (activeBtn) filter(activeBtn.dataset.type || '');
+    })();
+</script>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    @if (session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    @endif
+
+    @if (session('error'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: "{{ session('error') }}",
+            showConfirmButton: true
+        });
+    @endif
+
+    @if ($errors->any())
+        Swal.fire({
+            icon: 'warning',
+            title: 'Input Tidak Valid',
+            html: `
+                <ul style="text-align: left; margin-top: 10px;">
+                    @foreach ($errors->all() as $msg)
+                        <li>{{ $msg }}</li>
+                    @endforeach
+                </ul>
+            `,
+            confirmButtonText: 'Perbaiki',
+        });
+    @endif
+</script>
+<script>
+    setTimeout(() => {
+        document.querySelectorAll('x-toast').forEach(el => el.remove());
+    }, 4000);
+</script>
+
+
 
 
 

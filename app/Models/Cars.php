@@ -16,16 +16,20 @@ class Cars extends Model
         'plate_number',
         'transmission',
         'fuel_type',
-        'status',
-        'description',
         'vehicle_type',
+        'status',
+        'tanggal_pengurusan',
+        'masa_berlaku_pajak_1_tahun',
+        'masa_berlaku_pajak_5_tahun',
+        'uji_kir',
+        'keterangan',
+        'description',
         'image',
     ];
 
-    public function peminjamans()
+
+    public function trips()
     {
-        return $this->hasMany(Peminjamans::class, 'car_id');
+        return $this->hasMany(Trip::class, 'car_id');
     }
-
-
 }
